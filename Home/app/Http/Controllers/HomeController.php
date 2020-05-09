@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Message;
+use DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $messages = DB::select('select messages from messages');
+        return view('home',['messages'=>$messages]);
+    }
+    public function store (Request $request)
+    {
+        var_dump($request->all());
+        Message::create($request->all());
+        return redirect ('/home');
     }
 }
