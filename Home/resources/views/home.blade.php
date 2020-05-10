@@ -42,6 +42,7 @@
                 <table class="table table-striped">
                 <thead>
                     <tr>
+                    <th scope="col">ID</th>
                     <th scope="col">Mensagem</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -52,15 +53,18 @@
                 <tbody>
                 @foreach ($messages as $message)
                     <tr>
+                    <td>{{ $message->id }}</td>
                     <td>{{ $message->messages }}</td>
-                    <td></td>
+                    <td>
+                    <a href="{{ action('HomeController@delete', ['id' => $message->id]) }}" class="btn btn-danger btn-sm">X</a>
+                    </td>
                     <td></td>
                     <td></td>
                  
                     </tr>
                 
                 @endforeach 
-                   
+                    
                 </tbody>
                 
                 </table>
