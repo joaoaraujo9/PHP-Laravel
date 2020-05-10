@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -53,18 +54,19 @@
                 <tbody>
                 @foreach ($messages as $message)
                     <tr>
-                    <td>{{ $message->id }}</td>
-                    <td>{{ $message->messages }}</td>
-                    <td>
-                    <a href="{{ action('HomeController@delete', ['id' => $message->id]) }}" class="btn btn-danger btn-sm">X</a>
-                    </td>
-                    <td></td>
-                    <td></td>
-                 
+                        <td>{{ $message->id }}</td>
+                        <td>{{ $message->messages }}</td>
+                        <td>
+                            <a href="{{ action('HomeController@delete', ['id' => $message->id]) }}" class="btn btn-danger btn-sm">X</a>
+                        </td>
+                        <td>
+                            <a href="#" class="up">&uarr;</a>
+                        </td>
+                        <td>    
+                            <a href="#" class="down">&darr;</a>
+                        </td>
                     </tr>
-                
                 @endforeach 
-                    
                 </tbody>
                 
                 </table>
@@ -79,3 +81,4 @@
     </div>
 </div>
 @endsection
+
