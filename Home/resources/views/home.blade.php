@@ -1,9 +1,12 @@
 @extends('layouts.app')
 
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <form class="col-md-12" action=" {{ url ('/home/store') }}" method="POST">
+            {{ csrf_field()}}
             <div class="card">
                 <div class="card-header">Olá  {{{ Auth::user()->name }}} </div>
 
@@ -14,35 +17,68 @@
                         </div>
                     @endif
 
-                    Poste uma mensagem 
                                  
                     <div class="form-group row">
-                            <label for="message" class="col-md-4 col-form-label text-md-right">{{ __('Mensagem') }}</label>
+                            <label for="message" class="col-md-3 col-form-label d-flex justify-content-end">{{ __('Mensagem') }}</label>
+                    
+                                <textarea name="messages" rows="3" class="col-md-6 d-flex justify-content-start" id="message"> </textarea>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                            </div>
-                        </div>
+                    </div>
                         
 
                         
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                <div class="row d-flex justify-content-center">
+                    <div class="form-group">
+                        <div class="col-md-12 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">
                                     {{ __('Enviar Mensagem') }}
-                                </button>
+                            </button>
 
                                 
-                            </div>
                         </div>
-                                        
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                              
+                <table class="table table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Mensagem</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                @foreach ($messages as $message)
+                    <tr>
+                        <td>{{ $message->id }}</td>
+                        <td>{{ $message->messages }}</td>
+                        <td>
+                            <a href="{{ action('HomeController@delete', ['id' => $message->id]) }}" class="btn btn-danger btn-sm">X</a>
+                        </td>
+                        <td>
+                            <a href="#" class="up">&uarr;</a>
+                        </td>
+                        <td>    
+                            <a href="#" class="down">&darr;</a>
+                        </td>
+                    </tr>
+                @endforeach 
+                </tbody>
+                
+                </table>
+                </div> 
+                                 
 
                 </div>
 
             </div>
+            </form>
         </div>
     </div>
 </div>
 @endsection
+
