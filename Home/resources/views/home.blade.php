@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-header">Olá  {{{ Auth::user()->name }}} </div>
 
-                <div class="card-body">
+                    <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -21,25 +21,24 @@
                     <div class="form-group row">
                             <label for="message" class="col-md-3 col-form-label d-flex justify-content-end">{{ __('Mensagem') }}</label>
                     
-                                <textarea name="messages" rows="3" class="col-md-6 d-flex justify-content-start" id="message"> </textarea>
+                            <textarea name="messages" rows="3" class="col-md-6 d-flex justify-content-start" id="message"> </textarea>
 
                     </div>
                         
 
                         
-                <div class="row d-flex justify-content-center">
-                    <div class="form-group">
-                        <div class="col-md-12 d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary">
-                                    {{ __('Enviar Mensagem') }}
-                            </button>
+                    <div class="row d-flex justify-content-center">
+                        <div class="form-group">
+                            <div class="col-md-12 d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary">
+                                        {{ __('Enviar Mensagem') }}
+                                </button>
 
-                                
+                                    
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row d-flex justify-content-center">
-                              
+                <div class="row d-flex justify-content-center">            
                 <table class="table table-striped">
                 <thead>
                     <tr>
@@ -50,30 +49,26 @@
                     <th scope="col"></th>
                     </tr>
                 </thead>
-
                 <tbody>
                 @foreach ($messages as $message)
                     <tr>
                         <td>{{ $message->id }}</td>
                         <td>{{ $message->messages }}</td>
                         <td>
-                            <a href="{{ action('HomeController@delete', ['id' => $message->id]) }}" class="btn btn-danger btn-sm">X</a>
+                            <a href="#" class="down">&uArr;</a>
                         </td>
                         <td>
-                            <a href="#" class="up">&uarr;</a>
+                            <a href="#" class="up">&dArr;</a>
                         </td>
                         <td>    
-                            <a href="#" class="down">&darr;</a>
+                            <a href="{{ action('HomeController@delete', ['id' => $message->id]) }}" class="btn btn-danger btn-sm">x</a>
                         </td>
                     </tr>
                 @endforeach 
                 </tbody>
-                
                 </table>
                 </div> 
-                                 
-
-                </div>
+            </div>
 
             </div>
             </form>
@@ -82,3 +77,9 @@
 </div>
 @endsection
 
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+    </div>
+@endif
