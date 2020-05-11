@@ -21,9 +21,8 @@ class HomeController extends Controller
     
     public function store (Request $request)
     {
-        var_dump($request->all());
         Message::create($request->all());
-        return redirect ('/home');
+        return redirect('/home');
     }
     
     public function delete($id)
